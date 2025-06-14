@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Shop - Quality Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #4a6bff;
+      --secondary-color: #ff6b6b;
+      --dark-color: #333;
+      --light-color: #f8f9fa;
+      --success-color: #28a745;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn:hover {
+      background-color: #3a56d4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary-color);
+    }
+    
+    .btn-secondary:hover {
+      background-color: #e05555;
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: var(--dark-color);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--primary-color);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    
+    /* Navigation */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .logo span {
+      color: var(--secondary-color);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      font-weight: 600;
+      position: relative;
+      padding: 5px 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(74, 107, 255, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Products Section */
+    .products {
+      background-color: white;
+    }
+    
+    .slider-container {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .slider-item {
+      min-width: 100%;
+      position: relative;
+    }
+    
+    .slider img {
+      width: 100%;
+      display: block;
+      height: 500px;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .product-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .product-info p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .slider-dot.active {
+      background-color: var(--primary-color);
+    }
+    
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--dark-color);
+      transition: var(--transition);
+      z-index: 10;
+    }
+    
+    .slider-arrow:hover {
+      background-color: white;
+    }
+    
+    .slider-arrow.left {
+      left: 20px;
+    }
+    
+    .slider-arrow.right {
+      right: 20px;
+    }
+    
+    /* Features Section */
+    .features {
+      background-color: #f8f9fa;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .feature-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    
+    /* Contact Form */
+    .contact {
+      background-color: white;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f8f9fa;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-color);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      background-color: white;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      transform: translateY(-50px);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    
+    .modal.show .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      padding: 20px;
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .modal-header h2 {
+      font-size: 1.5rem;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+      background: none;
+      border: none;
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 15px;
+      }
+      
+      .slider img {
+        height: 400px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .slider img {
+        height: 300px;
+      }
+      
+      .product-info {
+        padding: 15px;
+      }
+      
+      .product-info h3 {
+        font-size: 1.5rem;
+      }
+      
+      .contact-form {
+        padding: 20px;
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Premium<span>Shop</span></a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1>Discover Premium Quality Products</h1>
+        <p class="delay-1">Experience the best in class products that combine style, functionality and durability for your everyday needs.</p>
+        <div class="hero-btns delay-2">
+          <a href="#products" class="btn">Shop Now</a>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="slider-container fade-in">
+        <div class="slider-arrow left"><i class="fas fa-chevron-left"></i></div>
+        <div class="slider">
+          <div class="slider-item">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Running Shoes">
+            <div class="product-info">
+              <h3>Ultra Running Shoes</h3>
+              <p>Lightweight and comfortable for your daily runs</p>
+              <button class="btn shop-btn" data-product="Ultra Running Shoes">Shop Now</button>
+            </div>
+          </div>
+          <div class="slider-item">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" alt="Smart Watch">
+            <div class="product-info">
+              <h3>Pro Smart Watch</h3>
+              <p>Track your fitness and stay connected</p>
+              <button class="btn shop-btn" data-product="Pro Smart Watch">Shop Now</button>
+            </div>
+          </div>
+          <div class="slider-item">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Headphones">
+            <div class="product-info">
+              <h3>Noise Cancelling Headphones</h3>
+              <p>Immerse yourself in crystal clear sound</p>
+              <button class="btn shop-btn" data-product="Noise Cancelling Headphones">Shop Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="slider-arrow right"><i class="fas fa-chevron-right"></i></div>
+        <div class="slider-nav">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Premium Quality</h3>
+          <p>All our products are made with the highest quality materials and craftsmanship to ensure longevity.</p>
+        </div>
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h3>Fast Delivery</h3>
+          <p>We offer express shipping options to get your products to you as quickly as possible.</p>
+        </div>
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Our customer service team is available around the clock to assist with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-form fade-in">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>PremiumShop</h3>
+        <p>Your one-stop destination for premium quality products that enhance your lifestyle.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Premium St, City</li>
+          <li><i class="fas fa-phone"></i> (011) 343-9529</li>
+          <li><i class="fas fa-envelope"></i> info@premiumshop.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear"></span> PremiumShop. All Rights Reserved. Developed by WorldWays Web-Developers.</p>
+    </div>
+  </div>
+</footer>
+  </footer>
+
+  <!-- Order Modal -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Order <span id="productName"></span></h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="orderForm">
+          <input type="hidden" id="modalProductName">
+          <div class="form-group">
+            <label for="orderName">Full Name</label>
+            <input type="text" id="orderName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="orderEmail">Email</label>
+            <input type="email" id="orderEmail" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="orderPhone">Phone Number</label>
+            <input type="tel" id="orderPhone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="orderAddress">Shipping Address</label>
+            <textarea id="orderAddress" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="orderQuantity">Quantity</label>
+            <input type="number" id="orderQuantity" class="form-control" min="1" value="1" required>
+          </div>
+          <button type="submit" class="btn">Complete Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Navigation
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Product Slider
+    const slider = document.querySelector('.slider');
+    const sliderItems = document.querySelectorAll('.slider-item');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.querySelector('.slider-arrow.left');
+    const nextBtn = document.querySelector('.slider-arrow.right');
+    
+    let currentIndex = 0;
+    const itemWidth = 100 / sliderItems.length;
+    
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % sliderItems.length;
+      updateSlider();
+    }
+    
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
+      updateSlider();
+    }
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    
+    // Auto slide
+    let slideInterval = setInterval(nextSlide, 5000);
+    
+    // Pause on hover
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+      slideInterval = setInterval(nextSlide, 5000);
+    });
+    
+    // Order Modal
+    const orderModal = document.getElementById('orderModal');
+    const shopBtns = document.querySelectorAll('.shop-btn');
+    const modalProductName = document.getElementById('productName');
+    const modalProductInput = document.getElementById('modalProductName');
+    const modalClose = document.querySelector('.modal-close');
+    
+    shopBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const productName = btn.getAttribute('data-product');
+        modalProductName.textContent = productName;
+        modalProductInput.value = productName;
+        orderModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    modalClose.addEventListener('click', () => {
+      orderModal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Close modal when clicking outside
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) {
+        orderModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Order Form Submission
+    const orderForm = document.getElementById('orderForm');
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const product = modalProductInput.value;
+      const name = document.getElementById('orderName').value;
+      const email = document.getElementById('orderEmail').value;
+      const phone = document.getElementById('orderPhone').value;
+      const address = document.getElementById('orderAddress').value;
+      const quantity = document.getElementById('orderQuantity').value;
+      
+      // Create WhatsApp message
+      const message = `New Order Inquiry:%0A%0AProduct: ${product}%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AAddress: ${address}%0AQuantity: ${quantity}`;
+      
+      // Open WhatsApp chat
+      window.open(`https://wa.me/0113439529?text=${message}`, '_blank');
+      
+      // Close modal
+      orderModal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      
+      // Reset form
+      orderForm.reset();
+    });
+    
+    // Contact Form Submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      
+      // Create WhatsApp message
+      const whatsappMessage = `New Contact Inquiry:%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}`;
+      
+      // Open WhatsApp chat
+      window.open(`https://wa.me/0113439529?text=${whatsappMessage}`, '_blank');
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Show success message
+      alert('Thank you for your message! We have opened WhatsApp for you to complete your inquiry.');
+    });
+    
+    // Intersection Observer for animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+    // Automatic year update
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12' || 
+      (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+      (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+      (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+  }
+});
+  </script>
+</body>
+</html>
